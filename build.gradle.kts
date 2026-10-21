@@ -1,22 +1,18 @@
-buildscript {
-    dependencies {
-        classpath(libs.kotlin.gradle)
-    }
-}
+import io.github.keiyoushi.gradle.api.ContentWarning
 
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-
-    alias(kei.plugins.spotless)
+    alias(kei.plugins.extension)
 }
 
-val buildLogic: IncludedBuild = gradle.includedBuild("build-logic")
-tasks {
-    listOf("clean", "spotlessApply", "spotlessCheck").forEach { task ->
-        named(task) {
-            dependsOn(buildLogic.task(":$task"))
-        }
+keiyoushi {
+    name = "Rule 34"
+    versionCode = 1
+    contentWarning = ContentWarning.NSFW
+    libVersion = "1.6"
+
+    source {
+        name = "Rule 34"
+        lang = "all"
+        baseUrl = "https://rule34.xxx"
     }
 }
